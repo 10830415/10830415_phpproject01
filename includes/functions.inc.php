@@ -45,13 +45,16 @@ function invalidEmail($email)  {
 }
 
 function uidExists($conn, $username, $email)  {
+	//Connect to the database and check
 	$sql = "SELECT * FROM users WHERE usersUid = ? OR usersEmail = ?;";
+	//submitting sql to the database in a proper way
 	$stmt = mysqli_stmt_init($conn);
+	//prvents people from manipulating your database
 	if(!mysqli_stmt_prepare($stmt, $sql)){
 		header("location: ../signup.php?error=stmtfailed");
 		exit();
 	}
-
+	//Entering the person's code 
 	mysqli_stmt_bind_param($stmt, "ss", $username, $email);
 	mysqli_stmt_execute($stmt);
 
@@ -65,6 +68,7 @@ function uidExists($conn, $username, $email)  {
 		return $result;
 	}
 
+//Close prepared statement
 	mysqli_stmt_close($stmt);
 }
 
