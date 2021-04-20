@@ -20,7 +20,7 @@
                 <a href="#">Products</a>
                 <?php
                 if(isset($_SESSION["useruid"])){
-                    echo "<a href='profile.php'>Profile page</a>";
+                    echo "<a href='#'>Profile page</a>";
                     echo "<a href='includes/logout.inc.php'>Log out</a>";
                 }
                 else{
